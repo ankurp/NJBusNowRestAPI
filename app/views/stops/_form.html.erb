@@ -1,0 +1,45 @@
+<%= form_for(@stop) do |f| %>
+  <% if @stop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stop.errors.count, "error") %> prohibited this stop from being saved:</h2>
+
+      <ul>
+      <% @stop.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :stop_id %><br>
+    <%= f.number_field :stop_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_code %><br>
+    <%= f.text_field :stop_code %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_name %><br>
+    <%= f.text_field :stop_name %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_desc %><br>
+    <%= f.text_field :stop_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_lat %><br>
+    <%= f.text_field :stop_lat %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_lon %><br>
+    <%= f.text_field :stop_lon %>
+  </div>
+  <div class="field">
+    <%= f.label :zone_id %><br>
+    <%= f.number_field :zone_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<h1>Listing stop_times</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trip</th>
+      <th>Arrival time</th>
+      <th>Departure time</th>
+      <th>Stop</th>
+      <th>Stop sequence</th>
+      <th>Pickup type</th>
+      <th>Drop off type</th>
+      <th>Shape dist traveled</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stop_times.each do |stop_time| %>
+      <tr>
+        <td><%= stop_time.trip_id %></td>
+        <td><%= stop_time.arrival_time %></td>
+        <td><%= stop_time.departure_time %></td>
+        <td><%= stop_time.stop_id %></td>
+        <td><%= stop_time.stop_sequence %></td>
+        <td><%= stop_time.pickup_type %></td>
+        <td><%= stop_time.drop_off_type %></td>
+        <td><%= stop_time.shape_dist_traveled %></td>
+        <td><%= link_to 'Show', stop_time %></td>
+        <td><%= link_to 'Edit', edit_stop_time_path(stop_time) %></td>
+        <td><%= link_to 'Destroy', stop_time, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stop time', new_stop_time_path %>

@@ -1,0 +1,31 @@
+<h1>Listing routes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Route</th>
+      <th>Agency</th>
+      <th>Route short namestring</th>
+      <th>Route type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @routes.each do |route| %>
+      <tr>
+        <td><%= route.route_id %></td>
+        <td><%= route.agency_id %></td>
+        <td><%= route.route_short_namestring %></td>
+        <td><%= route.route_type %></td>
+        <td><%= link_to 'Show', route %></td>
+        <td><%= link_to 'Edit', edit_route_path(route) %></td>
+        <td><%= link_to 'Destroy', route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Route', new_route_path %>

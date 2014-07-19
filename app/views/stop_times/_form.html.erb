@@ -1,0 +1,49 @@
+<%= form_for(@stop_time) do |f| %>
+  <% if @stop_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stop_time.errors.count, "error") %> prohibited this stop_time from being saved:</h2>
+
+      <ul>
+      <% @stop_time.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trip_id %><br>
+    <%= f.number_field :trip_id %>
+  </div>
+  <div class="field">
+    <%= f.label :arrival_time %><br>
+    <%= f.time_select :arrival_time %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_time %><br>
+    <%= f.time_select :departure_time %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_id %><br>
+    <%= f.number_field :stop_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stop_sequence %><br>
+    <%= f.number_field :stop_sequence %>
+  </div>
+  <div class="field">
+    <%= f.label :pickup_type %><br>
+    <%= f.number_field :pickup_type %>
+  </div>
+  <div class="field">
+    <%= f.label :drop_off_type %><br>
+    <%= f.number_field :drop_off_type %>
+  </div>
+  <div class="field">
+    <%= f.label :shape_dist_traveled %><br>
+    <%= f.text_field :shape_dist_traveled %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

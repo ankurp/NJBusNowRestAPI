@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @route.route_id %>
+</p>
+
+<p>
+  <strong>Agency:</strong>
+  <%= @route.agency_id %>
+</p>
+
+<p>
+  <strong>Route short namestring:</strong>
+  <%= @route.route_short_namestring %>
+</p>
+
+<p>
+  <strong>Route type:</strong>
+  <%= @route.route_type %>
+</p>
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>
