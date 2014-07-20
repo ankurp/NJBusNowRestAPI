@@ -23,7 +23,11 @@ class RoutesController < ApplicationController
   end
 
   def directions
-    render :json => @route.trips.select(:trip_headsign, :direction_id).uniq
+    @trips = {}
+    @route.trips.each do |t|
+      @trips["#{t.trip_headsign} #{t.direction_id}"] = t
+    end
+    render :json => @trips.values
   end
 
   # POST /routes
