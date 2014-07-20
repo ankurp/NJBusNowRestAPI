@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
   resources :stop_times
 
-  resources :trips
+  resources :trips do
+    member do
+      get "stops"
+    end
+  end
 
   resources :stops
 
-  resources :routes
+  resources :routes do 
+    member do
+      get "directions"
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

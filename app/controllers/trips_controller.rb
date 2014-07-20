@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :stops]
 
   # GET /trips
   # GET /trips.json
@@ -19,6 +19,10 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+  end
+
+  def stops
+    render :json => @trip.stop_times.map(&:stop)
   end
 
   # POST /trips

@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_route, only: [:show, :edit, :update, :destroy, :directions]
 
   # GET /routes
   # GET /routes.json
@@ -10,6 +10,7 @@ class RoutesController < ApplicationController
   # GET /routes/1
   # GET /routes/1.json
   def show
+    debugger
   end
 
   # GET /routes/new
@@ -19,6 +20,10 @@ class RoutesController < ApplicationController
 
   # GET /routes/1/edit
   def edit
+  end
+
+  def directions
+    render :json => @route.trips.select(:trip_headsign, :direction_id).uniq
   end
 
   # POST /routes
@@ -69,6 +74,6 @@ class RoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_params
-      params.require(:route).permit(:route_id, :agency_id, :route_short_namestring, :route_type)
+      params.require(:route).permit(:route_id, :agency_id, :route_short_name, :route_type)
     end
 end
