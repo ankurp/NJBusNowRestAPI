@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     member do
       get "directions"
     end
+    collection do
+      get "data"
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

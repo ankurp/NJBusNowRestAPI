@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+  <array>
+    <% Route.all.each do |r| %>
+      <dict>
+        <key>route_id</key>
+        <integer><%= r.route_id %></integer>
+        <key>route_short_name</key>
+        <string><%= r.route_short_name %></string>
+        <key>directions</key>
+        <array>
+          <% r.uniq_trips.each do |t| %>
+            <dict>
+              <key>route_id</key>
+              <integer><%= t.route_id %></integer>
+              <key>trip_id</key>
+              <integer><%= t.trip_id %></integer>
+              <key>trip_headsign</key>
+              <string><%= t.trip_headsign %></string>
+              <key>direction_id</key>
+              <integer><%= t.direction_id %></integer>
+              <key>stops</key>
+              <array>
+                <% t.stop_times.includes(:stop).map(&:stop).each do |s| %>
+                  <dict>
+                    <key>stop_code</key>
+                    <string><%= s.stop_code %></string>
+                    <key>stop_name</key>
+                    <string><%= s.stop_name %></string>
+                    <key>stop_desc</key>
+                    <string><%= s.stop_name %></string>
+                    <key>stop_lat</key>
+                    <real><%= s.stop_lat %></real>
+                    <key>stop_lon</key>
+                    <real><%= s.stop_lon %></real>
+                  </dict>
+                <% end %>
+              </array>
+            </dict>
+          <% end %>
+        </array>
+      </dict>
+    <% end %>
+  </array>
+</plist>

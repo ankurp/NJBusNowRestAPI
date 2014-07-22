@@ -8,4 +8,13 @@ class Route < ActiveRecord::Base
     Trip.where(:route_id => self.route_id)
   end
 
+  def uniq_trips
+    @trips = {}
+    self.trips.each do |t|
+      @trips["#{t.trip_headsign} #{t.direction_id}"] = t
+    end
+    @trips.values
+  end
+
+
 end

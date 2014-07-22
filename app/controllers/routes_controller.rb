@@ -7,6 +7,10 @@ class RoutesController < ApplicationController
     @routes = Route.all
   end
 
+  def data
+    render :data
+  end
+
   # GET /routes/1
   # GET /routes/1.json
   def show
