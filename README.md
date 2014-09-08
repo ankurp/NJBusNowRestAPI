@@ -6,6 +6,9 @@ Rest Server returning NJ Transit Bus data
 ## Getting Started
 Start the server using `rails s`
 
+## Database
+Data is stored in the sqlite database bundled in this project for portability.
+
 ## Models
 1. *Routes* - /routes will return all the NJ Transit bus routes
 2. *Trips* - /trips will return all the trips for all the bus routes
