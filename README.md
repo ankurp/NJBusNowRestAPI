@@ -3,8 +3,8 @@ NJBusNowRestAPI
 
 Rest Server returning NJ Transit Bus data
 
-
-## Start the server using `rails s`
+## Getting Started
+Start the server using `rails s`
 
 ## Models
 1. *Routes* - /routes will return all the NJ Transit bus routes
@@ -35,7 +35,7 @@ Rest Server returning NJ Transit Bus data
   end
 ```
 
-## Relations
+## Relationships between Models
 
 ```ruby
 class Trip < ActiveRecord::Base
@@ -43,5 +43,33 @@ class Trip < ActiveRecord::Base
   belongs_to :route
   has_many :stop_times
 
+end
+
+
+class StopTime < ActiveRecord::Base
+
+  belongs_to :trip
+  belongs_to :stop, :primary_key => :stop_id
+
+end
+
+
+class Stop < ActiveRecord::Base
+
+  has_many :stop_times
+
+end
+
+class Route < ActiveRecord::Base
+
+  ...
+
+  # manually writing relationship method as primary_key is set to route_short_name
+  # has_many :trips
+  def trips
+    ...
+  end
+
+  ...
 end
 ```
