@@ -1,28 +1,78 @@
-== README
+NJBusNowRestAPI
+===============
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rest Server returning NJ Transit Bus data
 
-Things you may want to cover:
+## Getting Started
+Start the server using `rails s`
 
-* Ruby version
+## Database
+Data is stored in the sqlite database bundled in this project for portability.
 
-* System dependencies
+## Models
+1. *Routes* - /routes will return all the NJ Transit bus routes
+2. *Trips* - /trips will return all the trips for all the bus routes
+3. *Stops* - /stops will give all the bus stops
+4. *Stop Times* - /stop_times will give all the stop times at each bus stop
 
-* Configuration
+## Routes
 
-* Database creation
+```ruby
+  resources :stop_times    # /stop_times
 
-* Database initialization
+  resources :trips do      # /trips
+    member do
+      get "stops"          # /trips/88/stops
+    end
+  end
 
-* How to run the test suite
+  resources :stops         # /stops
 
-* Services (job queues, cache servers, search engines, etc.)
+  resources :routes do     # /routes
+    member do
+      get "directions"     # /routes/88/directions
+    end
+    collection do
+      get "data"           # /routes/data
+    end
+  end
+```
 
-* Deployment instructions
+## Relationships between Models
 
-* ...
+```ruby
+class Trip < ActiveRecord::Base
+
+  belongs_to :route
+  has_many :stop_times
+
+end
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+class StopTime < ActiveRecord::Base
+
+  belongs_to :trip
+  belongs_to :stop, :primary_key => :stop_id
+
+end
+
+
+class Stop < ActiveRecord::Base
+
+  has_many :stop_times
+
+end
+
+class Route < ActiveRecord::Base
+
+  ...
+
+  # manually writing relationship method as primary_key is set to route_short_name
+  # has_many :trips
+  def trips
+    ...
+  end
+
+  ...
+end
+```
