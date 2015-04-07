@@ -5,6 +5,10 @@ class StopsController < ApplicationController
   # GET /stops.json
   def index
     @stops = Stop.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @stops, status: :ok }
+    end
   end
 
   # GET /stops/1

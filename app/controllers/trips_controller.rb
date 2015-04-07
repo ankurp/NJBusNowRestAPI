@@ -5,6 +5,10 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     @trips = Trip.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @trips, status: :ok }
+    end
   end
 
   # GET /trips/1
