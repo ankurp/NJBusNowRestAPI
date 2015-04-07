@@ -43,8 +43,6 @@ GEM
     multi_json (1.10.1)
     pg (0.18.1)
     polyglot (0.3.5)
-    puma (2.11.1)
-      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -90,7 +88,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import
   pg
-  puma
   rails (= 4.1.1)
   spring
   sqlite3

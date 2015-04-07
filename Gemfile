@@ -5,6 +5,5 @@ gem 'sqlite3', group: :development
 gem 'pg', group: :production
 gem 'spring', group: :development
 gem 'activerecord-import'
-gem 'puma'
 
 ruby '2.2.1'
