@@ -12,6 +12,6 @@ CSV.open("#{Rails.root}/db/stops.txt", :headers => true, :header_converters => :
   Stop.create(row.to_h)
 end
 
-# CSV.open("#{Rails.root}/db/trips.txt", :headers => true, :header_converters => :symbol, :col_sep => ',').each do |row|
-#   Trip.create(row.to_h)
-# end
+CSV.open("#{Rails.root}/db/trips.txt", :headers => true, :header_converters => :symbol, :col_sep => ',').each do |row|
+  Trip.create(row.to_h)
+end
