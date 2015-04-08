@@ -5,8 +5,11 @@ REST Server returning NJ Transit Bus data
 
 ## API
 
+In the API below `:format` can be `json`, `xml`, `html` or left blank which would then default to `html`.
+
 ```
           Prefix Verb   URI Pattern                      Controller#Action
+=============================================================================
       stop_times GET    /stop_times(.:format)            stop_times#index
                  POST   /stop_times(.:format)            stop_times#create
    new_stop_time GET    /stop_times/new(.:format)        stop_times#new
