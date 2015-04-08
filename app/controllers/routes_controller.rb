@@ -7,6 +7,7 @@ class RoutesController < ApplicationController
     @routes = Route.all
     respond_to do |format|
       format.html { render :index }
+      format.xml { render xml: @routes, status: :ok }
       format.json { render json: @routes, status: :ok }
     end
   end
@@ -45,9 +46,11 @@ class RoutesController < ApplicationController
     respond_to do |format|
       if @route.save
         format.html { redirect_to @route, notice: 'Route was successfully created.' }
+        format.xml { render :show, status: :created, location: @route }
         format.json { render :show, status: :created, location: @route }
       else
         format.html { render :new }
+        format.xml { render xml: @route.errors, status: :unprocessable_entity }
         format.json { render json: @route.errors, status: :unprocessable_entity }
       end
     end
@@ -59,9 +62,11 @@ class RoutesController < ApplicationController
     respond_to do |format|
       if @route.update(route_params)
         format.html { redirect_to @route, notice: 'Route was successfully updated.' }
+        format.xml { render :show, status: :created, location: @route }
         format.json { render :show, status: :ok, location: @route }
       else
         format.html { render :edit }
+        format.xml { render xml: @route.errors, status: :unprocessable_entity }
         format.json { render json: @route.errors, status: :unprocessable_entity }
       end
     end
@@ -73,6 +78,7 @@ class RoutesController < ApplicationController
     @route.destroy
     respond_to do |format|
       format.html { redirect_to routes_url, notice: 'Route was successfully destroyed.' }
+      format.xml { head :no_content }
       format.json { head :no_content }
     end
   end

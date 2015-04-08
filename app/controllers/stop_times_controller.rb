@@ -7,6 +7,7 @@ class StopTimesController < ApplicationController
     @stop_times = StopTime.all
     respond_to do |format|
       format.html { render :index }
+      format.xml { render xml: @stop_times, status: :ok }
       format.json { render json: @stop_times, status: :ok }
     end
   end
@@ -33,9 +34,11 @@ class StopTimesController < ApplicationController
     respond_to do |format|
       if @stop_time.save
         format.html { redirect_to @stop_time, notice: 'Stop time was successfully created.' }
+        format.xml { render :show, status: :created, location: @stop_time }
         format.json { render :show, status: :created, location: @stop_time }
       else
         format.html { render :new }
+        format.xml { render xml: @stop_time.errors, status: :unprocessable_entity }
         format.json { render json: @stop_time.errors, status: :unprocessable_entity }
       end
     end
@@ -47,9 +50,11 @@ class StopTimesController < ApplicationController
     respond_to do |format|
       if @stop_time.update(stop_time_params)
         format.html { redirect_to @stop_time, notice: 'Stop time was successfully updated.' }
+        format.xml { render :show, status: :created, location: @stop_time }
         format.json { render :show, status: :ok, location: @stop_time }
       else
         format.html { render :edit }
+        format.xml { render xml: @stop_time.errors, status: :unprocessable_entity }
         format.json { render json: @stop_time.errors, status: :unprocessable_entity }
       end
     end
@@ -61,6 +66,7 @@ class StopTimesController < ApplicationController
     @stop_time.destroy
     respond_to do |format|
       format.html { redirect_to stop_times_url, notice: 'Stop time was successfully destroyed.' }
+      format.xml { head :no_content }
       format.json { head :no_content }
     end
   end

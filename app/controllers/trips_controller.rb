@@ -7,6 +7,7 @@ class TripsController < ApplicationController
     @trips = Trip.all
     respond_to do |format|
       format.html { render :index }
+      format.xml { render xml: @trips, status: :ok }
       format.json { render json: @trips, status: :ok }
     end
   end
@@ -37,9 +38,11 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.xml { render :show, status: :created, location: @trip }
         format.json { render :show, status: :created, location: @trip }
       else
         format.html { render :new }
+        format.xml { render xml: @trip.errors, status: :unprocessable_entity }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
@@ -51,9 +54,11 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        format.xml { render :show, status: :created, location: @trip }
         format.json { render :show, status: :ok, location: @trip }
       else
         format.html { render :edit }
+        format.xml { render xml: @trip.errors, status: :unprocessable_entity }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
@@ -65,6 +70,7 @@ class TripsController < ApplicationController
     @trip.destroy
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.xml { head :no_content }
       format.json { head :no_content }
     end
   end

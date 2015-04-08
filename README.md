@@ -1,7 +1,48 @@
 NJBusNowRestAPI
 ===============
 
-Rest Server returning NJ Transit Bus data
+REST Server returning NJ Transit Bus data
+
+## API
+
+```
+          Prefix Verb   URI Pattern                      Controller#Action
+      stop_times GET    /stop_times(.:format)            stop_times#index
+                 POST   /stop_times(.:format)            stop_times#create
+   new_stop_time GET    /stop_times/new(.:format)        stop_times#new
+  edit_stop_time GET    /stop_times/:id/edit(.:format)   stop_times#edit
+       stop_time GET    /stop_times/:id(.:format)        stop_times#show
+                 PATCH  /stop_times/:id(.:format)        stop_times#update
+                 PUT    /stop_times/:id(.:format)        stop_times#update
+                 DELETE /stop_times/:id(.:format)        stop_times#destroy
+      stops_trip GET    /trips/:id/stops(.:format)       trips#stops
+           trips GET    /trips(.:format)                 trips#index
+                 POST   /trips(.:format)                 trips#create
+        new_trip GET    /trips/new(.:format)             trips#new
+       edit_trip GET    /trips/:id/edit(.:format)        trips#edit
+            trip GET    /trips/:id(.:format)             trips#show
+                 PATCH  /trips/:id(.:format)             trips#update
+                 PUT    /trips/:id(.:format)             trips#update
+                 DELETE /trips/:id(.:format)             trips#destroy
+           stops GET    /stops(.:format)                 stops#index
+                 POST   /stops(.:format)                 stops#create
+        new_stop GET    /stops/new(.:format)             stops#new
+       edit_stop GET    /stops/:id/edit(.:format)        stops#edit
+            stop GET    /stops/:id(.:format)             stops#show
+                 PATCH  /stops/:id(.:format)             stops#update
+                 PUT    /stops/:id(.:format)             stops#update
+                 DELETE /stops/:id(.:format)             stops#destroy
+directions_route GET    /routes/:id/directions(.:format) routes#directions
+     data_routes GET    /routes/data(.:format)           routes#data
+          routes GET    /routes(.:format)                routes#index
+                 POST   /routes(.:format)                routes#create
+       new_route GET    /routes/new(.:format)            routes#new
+      edit_route GET    /routes/:id/edit(.:format)       routes#edit
+           route GET    /routes/:id(.:format)            routes#show
+                 PATCH  /routes/:id(.:format)            routes#update
+                 PUT    /routes/:id(.:format)            routes#update
+                 DELETE /routes/:id(.:format)            routes#destroy
+```
 
 ## Getting Started
 Start the server using `rails s`
